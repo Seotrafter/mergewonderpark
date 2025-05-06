@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Wonder Park - Juego Offline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='icon' href='/src/icons/logo.png' type='image/x-icon'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amarillo: '#ffc501',
+                        rosa: '#da2b90',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow:hover {
+            box-shadow: 0 0 25px rgba(255, 197, 1, 0.7);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow-pink:hover {
+            box-shadow: 0 0 25px rgba(218, 43, 144, 0.7);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+        }
+
+        .prose a {
+            color: #da2b90;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .prose a:hover {
+            text-decoration: underline;
+            color: #ffc501;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .bg-amarillo\/10 {
+            background-color: rgba(255, 197, 1, 0.1);
+        }
+
+        .bg-rosa\/10 {
+            background-color: rgba(218, 43, 144, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-white overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full bg-rosa flex items-center justify-center magic-glow">
+                        <span class="text-white text-2xl">🏝️</span>
+                    </div>
+                    <span class="text-rosa font-bold text-xl md:text-2xl">Merge Wonder Park</span>
+                </a>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                    <a href="/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Descargar</a>
+                    <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Sobre los promotores</a>
+                    <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Contactos</a>
+                </nav>
+
+                <button class="md:hidden text-rosa text-2xl">☰</button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="hidden md:hidden bg-white w-full pb-4 px-4">
+            <div class="flex flex-col space-y-3">
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                <a href="/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300 text-center">Descargar</a>
+                <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Sobre los promotores</a>
+                <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Contactos</a>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- Privacy Policy Section - Header -->
+    <section class="py-20 bg-gradient-to-b from-amarillo/10 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-thin mb-6 text-gray-800 leading-tight mt-16">
+                    Política de <span class="text-rosa font-semibold">Privacidad</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+                    En Merge Wonder Park - Juego Offline, una de nuestras principales prioridades es la privacidad de nuestros visitantes.
+                </p>
+            </div>
+
+            <div class="relative mb-16">
+                <div class="absolute -inset-1 bg-gradient-to-r from-amarillo to-rosa rounded-2xl opacity-50 blur"></div>
+                <div class="relative bg-white rounded-2xl p-8 shadow-xl">
+                    <div class="prose max-w-none text-gray-600 text-lg font-light">
+                        <p>
+                            En Merge Wonder Park - Juego Offline, accesible desde https://mergewonderpark.com/, una de nuestras principales prioridades es la privacidad de nuestros visitantes. Este documento de Política de Privacidad contiene los tipos de información que recopilamos y registramos en Merge Wonder Park - Juego Offline y cómo la utilizamos.
+                        </p>
+                        <p>
+                            Si tiene preguntas adicionales o necesita más información sobre nuestra Política de Privacidad, no dude en contactarnos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Archivos de Registro -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">📋</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">Archivos de Registro</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Merge Wonder Park - Juego Offline sigue un procedimiento estándar en el uso de archivos de registro. Estos archivos registran a los visitantes cuando acceden al sitio web. Todas las empresas de alojamiento web realizan este proceso como parte del análisis de sus servicios de alojamiento.
+                                </p>
+                                <p>
+                                    La información recopilada en los archivos de registro incluye direcciones de protocolo de internet (IP), tipo de navegador, proveedor de servicios de internet (ISP), fecha y hora, páginas de referencia/salida y, posiblemente, el número de clics. Esta información no está vinculada a ningún dato personal identificable.
+                                </p>
+                                <p>
+                                    Su propósito es analizar tendencias, administrar el sitio, rastrear el movimiento de los usuarios en el sitio web y recopilar información demográfica.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cookies y Balizas Web -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-amarillo/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow">
+                            <span class="text-4xl">🍪</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-amarillo mb-2">Cookies y Balizas Web</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Al igual que otros sitios web, Merge Wonder Park - Juego Offline utiliza "cookies". Estas cookies se emplean para almacenar información, incluidas las preferencias de los visitantes y las páginas del sitio web que han visitado. La información se usa para optimizar la experiencia del usuario personalizando el contenido de la página web según el tipo de navegador y/u otra información.
+                                </p>
+                                <p>
+                                    Para obtener más información general sobre las cookies, consulte <a href="https://www.privacypolicyonline.com/what-are-cookies/" class="text-rosa hover:underline">el artículo "Cookies" del Generador de Políticas de Privacidad</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cookie DART de Google DoubleClick -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">🎯</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">Cookie DART de Google</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Google es uno de los proveedores externos en nuestro sitio. También utiliza cookies, conocidas como cookies DART, para mostrar anuncios a nuestros visitantes en función de su visita a www.website.com y otros sitios en internet.
+                                </p>
+                                <p>
+                                    Sin embargo, los visitantes pueden optar por rechazar el uso de las cookies DART visitando la Política de Privacidad de la red de contenido y anuncios de Google en el siguiente enlace:
+                                    <a href="https://policies.google.com/technologies/ads" class="text-rosa hover:underline">https://policies.google.com/technologies/ads</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nuestros Socios Publicitarios -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-amarillo/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow">
+                            <span class="text-4xl">🤝</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-amarillo mb-2">Socios Publicitarios</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Algunos de nuestros anunciantes pueden utilizar cookies y balizas web. A continuación, se enumeran nuestros socios publicitarios. Cada uno de ellos tiene su propia Política de Privacidad sobre el manejo de datos de los usuarios. Para facilitar el acceso, hemos incluido enlaces a sus Políticas de Privacidad.
+                                </p>
+
+                                <ul class="list-disc pl-6 space-y-2 text-gray-600">
+                                    <li>
+                                        Google
+                                        <a href="https://policies.google.com/technologies/ads" class="text-rosa hover:underline block ml-4">https://policies.google.com/technologies/ads</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Políticas de Privacidad -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">📜</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">Políticas de Privacidad</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Puede consultar esta lista para encontrar la Política de Privacidad de cada uno de los socios publicitarios de Merge Wonder Park - Juego Offline.
+                                </p>
+                                <p>
+                                    Los servidores de anuncios de terceros o las redes publicitarias utilizan tecnologías como cookies, JavaScript o balizas web en sus respectivos anuncios y enlaces que aparecen en Merge Wonder Park - Juego Offline, los cuales se envían directamente al navegador de los usuarios. Cuando esto ocurre, estos reciben automáticamente su dirección IP. Estas tecnologías se usan para medir la efectividad de sus campañas publicitarias y/o para personalizar el contenido publicitario que los usuarios ven en los sitios web que visitan.
+                                </p>
+                                <p>
+                                    Tenga en cuenta que Merge Wonder Park - Juego Offline no tiene acceso ni control sobre estas cookies utilizadas por anunciantes de terceros.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Políticas de Privacidad de Terceros -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-amarillo/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow">
+                            <span class="text-4xl">🔄</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-amarillo mb-2">Políticas de Terceros</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    La Política de Privacidad de Merge Wonder Park - Juego Offline no se aplica a otros anunciantes o sitios web. Por ello, le recomendamos que consulte las respectivas Políticas de Privacidad de estos servidores de anuncios de terceros para obtener información más detallada. Puede incluir sus prácticas e instrucciones sobre cómo optar por no participar en ciertas opciones.
+                                </p>
+                                <p>
+                                    Puede elegir deshabilitar las cookies a través de la configuración de su navegador. Para obtener información más detallada sobre la gestión de cookies en navegadores específicos, consulte los sitios web oficiales de los navegadores.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información para Niños -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">👶</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">Información para Niños</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Otra de nuestras prioridades es garantizar la protección de los niños mientras usan internet. Alentamos a los padres y tutores a observar, participar y/o monitorear y guiar su actividad en línea.
+                                </p>
+                                <p>
+                                    Merge Wonder Park - Juego Offline no recopila de manera intencionada ninguna información personal identificable de niños menores de 13 años. Si cree que su hijo ha proporcionado este tipo de información en nuestro sitio web, le recomendamos encarecidamente que se comunique con nosotros de inmediato. Haremos todo lo posible para eliminar rápidamente dicha información de nuestros registros.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Política de Privacidad en Línea Únicamente -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-amarillo/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow">
+                            <span class="text-4xl">🌐</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-amarillo mb-2">Aplicación en Línea</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Esta Política de Privacidad se aplica únicamente a nuestras actividades en línea y es válida para los visitantes de nuestro sitio web con respecto a la información que comparten y/o recopilan en Merge Wonder Park - Juego Offline. Esta política no se aplica a la información recopilada fuera de línea o a través de otros canales distintos de este sitio web.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consentimiento -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">✅</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">Consentimiento</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Al utilizar nuestro sitio web, usted acepta nuestra Política de Privacidad y está de acuerdo con sus Términos y Condiciones.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacto -->
+            <div class="mb-16 text-center">
+                <div class="bg-gradient-to-r from-amarillo/20 to-rosa/20 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 mx-auto magic-glow">
+                        <span class="text-4xl">📧</span>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">¿Preguntas sobre nuestra política?</h2>
+                    <p class="text-lg text-gray-600 mb-6 font-light">
+                        Si tienes dudas o necesitas más información sobre nuestra Política de Privacidad, no dudes en contactarnos.
+                    </p>
+                    <a href="/contacto/" class="inline-block bg-rosa text-white text-lg py-3 px-8 rounded-full font-semibold hover:bg-amarillo transition-all duration-300 btn-hover magic-glow-pink">
+                        Contactar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between gap-8 mb-12">
+                <div class="md:w-1/3">
+                    <a href="/" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-rosa flex items-center justify-center">
+                            <span class="text-white text-xl">🏝️</span>
+                        </div>
+                        <span class="text-rosa font-bold text-xl">Merge Wonder Park</span>
+                    </a>
+                    <p class="text-gray-600 mb-6">
+                        Un juego de combinación y construcción donde ayudarás a María a recuperar su inspiración artística en un encantador pueblo costero.
+                    </p>
+
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Enlaces rápidos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Inicio</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre el juego</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Características</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Gameplay</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Soporte</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/About-us/" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre los promotores</a></li>
+                        <li><a href="/contacto/" class="text-gray-600 hover:text-rosa transition-all duration-300">Contacto</a></li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Legal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/Policy356/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de privacidad</a></li>
+                        <li><a href="/Service347/" class="text-gray-600 hover:text-rosa transition-all duration-300">Términos de uso</a></li>
+                        <li><a href="/Cookie992/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2025 Merge Wonder Park. Todos los derechos reservados.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="/Policy356/" class="text-gray-500 hover:text-rosa text-sm">Política de privacidad</a>
+                        <a href="/Service347/" class="text-gray-500 hover:text-rosa text-sm">Términos de uso</a>
+                        <a href="/Cookie992/" class="text-gray-500 hover:text-rosa text-sm">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Scripts -->
+    <script>
+        // Simple mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.querySelector('button.md\\:hidden');
+            const mobileMenu = document.querySelector('.hidden.md\\:hidden');
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // Simple animation for elements when they come into view
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section > div').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Add the CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                .animate-fade-in {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                }
+                
+                /* Magic sparkle effect */
+                @keyframes sparkle {
+                    0% { transform: scale(1); opacity: 0.8; }
+                    50% { transform: scale(1.2); opacity: 1; }
+                    100% { transform: scale(1); opacity: 0.8; }
+                }
+                
+                .magic-sparkle {
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: white;
+                    pointer-events: none;
+                    animation: sparkle 2s infinite;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add magic sparkles to certain elements
+            const addSparkles = (element, count = 5) => {
+                for (let i = 0; i < count; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('magic-sparkle');
+
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+
+                    sparkle.style.left = `${posX}%`;
+                    sparkle.style.top = `${posY}%`;
+
+                    // Random size
+                    const size = 4 + Math.random() * 6;
+                    sparkle.style.width = `${size}px`;
+                    sparkle.style.height = `${size}px`;
+
+                    // Random color (yellow or pink)
+                    const colors = ['#ffc501', '#da2b90', '#ffffff'];
+                    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                    // Random animation delay
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+
+                    // Add to the element
+                    element.style.position = 'relative';
+                    element.style.overflow = 'hidden';
+                    element.appendChild(sparkle);
+                }
+            };
+
+            // Add sparkles to glowing elements
+            document.querySelectorAll('.magic-glow, .magic-glow-pink').forEach(element => {
+                addSparkles(element, 3);
+            });
+
+            // Simple hover effect for buttons
+            document.querySelectorAll('.btn-hover').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px)';
+                    button.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.1)';
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translateY(0)';
+                    button.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+        });
+    </script>
+
+
+
+
+    <!-- Magic floating elements -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add floating animation to specific elements
+            const floatingElements = document.querySelectorAll('.magic-glow, .magic-glow-pink');
+
+            floatingElements.forEach((element, index) => {
+                // Create different animation for each element
+                const delay = index * 0.2;
+                const duration = 3 + Math.random() * 2;
+
+                element.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+            });
+
+            // Add the floating animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floating {
+                    0% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                    100% { transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+
+    <?php include '../cookie-consent.php'; ?>
+</body>
+
+</html>

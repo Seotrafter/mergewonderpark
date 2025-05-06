@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Wonder Park - Juego Offline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='icon' href='/src/icons/logo.png' type='image/x-icon'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amarillo: '#ffc501',
+                        rosa: '#da2b90',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-white overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full bg-rosa flex items-center justify-center magic-glow">
+                        <span class="text-white text-2xl">🏝️</span>
+                    </div>
+                    <span class="text-rosa font-bold text-xl md:text-2xl">Merge Wonder Park</span>
+                </a>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                    <a href="/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Descargar</a>
+                    <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Sobre los promotores</a>
+                    <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Contactos</a>
+                </nav>
+
+                <button class="md:hidden text-rosa text-2xl">☰</button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="hidden md:hidden bg-white w-full pb-4 px-4">
+            <div class="flex flex-col space-y-3">
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                <a href="/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300 text-center">Descargar</a>
+                <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Sobre los promotores</a>
+                <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Contactos</a>
+            </div>
+        </div>
+    </header>
+    <!-- Contact Section - Header -->
+    <section class="py-20 bg-gradient-to-b from-amarillo/10 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-thin mb-6 text-gray-800 leading-tight mt-16">
+                    <span class="text-rosa font-semibold">Contáctanos</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+                    Si tienes alguna pregunta, no dudes en ponerte en contacto con nosotros
+                </p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="flex flex-col md:flex-row gap-12 mb-16">
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg h-full">
+                        <h2 class="text-2xl font-semibold text-rosa mb-6">Información de Contacto</h2>
+
+                        <div class="space-y-8">
+                            <!-- Email -->
+                            <div class="flex items-start gap-4">
+                                <div class="bg-amarillo/10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 magic-glow">
+                                    <span class="text-amarillo text-xl">✉️</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-medium text-gray-800 mb-1">Correo Electrónico</h3>
+                                    <p class="text-gray-600 mb-1">Para consultas generales:</p>
+                                    <a href="mailto:info@mergewonderpark.com" class="text-rosa hover:underline">info@mergewonderpark.com</a>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="flex items-start gap-4">
+                                <div class="bg-rosa/10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 magic-glow-pink">
+                                    <span class="text-rosa text-xl">📞</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-medium text-gray-800 mb-1">Teléfono</h3>
+                                    <p class="text-gray-600 mb-1">Servicio al cliente (Chile):</p>
+                                    <a href="tel:+56229876543" class="text-rosa hover:underline">+56 2 2987 6543</a>
+                                    <p class="text-gray-500 text-sm mt-2">Lunes a Viernes: 9:00 - 18:00 (CLT)</p>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-semibold text-amarillo mb-6">Envíanos un Mensaje</h2>
+
+                        <form action="/thank-you/" class="space-y-6">
+                            <!-- Name Field -->
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Nombre Completo</label>
+                                <div class="relative">
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rosa/50 focus:border-rosa transition-colors duration-300 pl-10"
+                                        placeholder="Tu nombre"
+                                        required>
+                                    <span class="absolute left-3 top-3 text-gray-400">👤</span>
+                                </div>
+                            </div>
+
+                            <!-- Email Field -->
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Correo Electrónico</label>
+                                <div class="relative">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rosa/50 focus:border-rosa transition-colors duration-300 pl-10"
+                                        placeholder="tu.email@ejemplo.com"
+                                        required>
+                                    <span class="absolute left-3 top-3 text-gray-400">✉️</span>
+                                </div>
+                            </div>
+
+                            <!-- Subject Field -->
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Asunto</label>
+                                <div class="relative">
+                                    <select
+                                        id="subject"
+                                        name="subject"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rosa/50 focus:border-rosa transition-colors duration-300 pl-10 appearance-none bg-white"
+                                        required>
+                                        <option value="" disabled selected>Selecciona un asunto</option>
+                                        <option value="general">Consulta General</option>
+                                        <option value="support">Soporte Técnico</option>
+                                        <option value="feedback">Feedback del Juego</option>
+                                        <option value="business">Propuesta de Negocio</option>
+                                        <option value="other">Otro</option>
+                                    </select>
+                                    <span class="absolute left-3 top-3 text-gray-400">📋</span>
+                                    <span class="absolute right-3 top-3 text-gray-400 pointer-events-none">▼</span>
+                                </div>
+                            </div>
+
+                            <!-- Message Field -->
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Mensaje</label>
+                                <div class="relative">
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        rows="5"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-rosa/50 focus:border-rosa transition-colors duration-300 pl-10"
+                                        placeholder="Escribe tu mensaje aquí..."
+                                        required></textarea>
+                                    <span class="absolute left-3 top-3 text-gray-400">💬</span>
+                                </div>
+                            </div>
+
+                            <!-- Privacy Policy Checkbox -->
+                            <div class="flex items-start gap-2">
+                                <input
+                                    type="checkbox"
+                                    id="privacy"
+                                    name="privacy"
+                                    class="mt-1.5 h-4 w-4 rounded border-gray-300 text-rosa focus:ring-rosa/50"
+                                    required>
+                                <label for="privacy" class="text-gray-600 text-sm">
+                                    He leído y acepto la <a href=Policy356/" class="text-rosa hover:underline">Política de Privacidad</a> y los <a href="/Service347/" class="text-rosa hover:underline">Términos de Servicio</a>
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-4">
+                                <button
+                                    type="submit"
+                                    class="w-full bg-rosa text-white text-lg py-3 px-6 rounded-xl font-semibold hover:bg-amarillo transition-all duration-300 magic-glow-pink flex items-center justify-center gap-2">
+                                    <span>Enviar Mensaje</span>
+                                    <span>✈️</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mb-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-thin">Preguntas <span class="text-rosa font-semibold">Frecuentes</span></h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto mt-4 font-light">
+                        Aquí encontrarás respuestas a las preguntas más comunes. Si no encuentras lo que buscas, no dudes en contactarnos.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- FAQ Item 1 -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                        <div class="bg-amarillo/10 px-6 py-4">
+                            <h3 class="text-lg font-medium text-gray-800">¿Cómo puedo reportar un problema técnico?</h3>
+                        </div>
+                        <div class="px-6 py-4">
+                            <p class="text-gray-600 font-light">
+                                Para reportar problemas técnicos, puedes utilizar nuestro formulario de contacto seleccionando "Soporte Técnico" como asunto. Alternativamente, puedes enviarnos un correo directamente a support@mergewonderpark.com. Te responderemos en un plazo máximo de 48 horas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                        <div class="bg-rosa/10 px-6 py-4">
+                            <h3 class="text-lg font-medium text-gray-800">¿Cómo puedo sugerir nuevas funciones para el juego?</h3>
+                        </div>
+                        <div class="px-6 py-4">
+                            <p class="text-gray-600 font-light">
+                                ¡Nos encanta recibir sugerencias de nuestros jugadores! Puedes utilizar nuestro formulario de contacto seleccionando "Feedback del Juego" como asunto. También puedes compartir tus ideas en nuestras redes sociales oficiales.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                        <div class="bg-amarillo/10 px-6 py-4">
+                            <h3 class="text-lg font-medium text-gray-800">¿Existe un programa de afiliados o colaboraciones?</h3>
+                        </div>
+                        <div class="px-6 py-4">
+                            <p class="text-gray-600 font-light">
+                                Sí, contamos con un programa de afiliados y estamos abiertos a colaboraciones. Si eres creador de contenido, influencer o representas a una marca y estás interesado en colaborar, envíanos un mensaje seleccionando "Propuesta de Negocio" en el formulario.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                        <div class="bg-rosa/10 px-6 py-4">
+                            <h3 class="text-lg font-medium text-gray-800">¿Cuál es el horario de atención al cliente?</h3>
+                        </div>
+                        <div class="px-6 py-4">
+                            <p class="text-gray-600 font-light">
+                                Nuestro equipo de atención al cliente está disponible de lunes a viernes, de 9:00 a 18:00 horas (CLT). Para consultas por teléfono, puedes llamarnos al +56 2 2987 6543. Los mensajes recibidos fuera de este horario serán atendidos el siguiente día hábil.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="mb-16 text-center">
+                <div class="bg-gradient-to-r from-amarillo/20 to-rosa/20 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 mx-auto magic-glow">
+                        <span class="text-4xl">🤝</span>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">¿No encuentras lo que buscas?</h2>
+                    <p class="text-lg text-gray-600 mb-6 font-light">
+                        Estamos aquí para ayudarte. No dudes en contactarnos directamente y te responderemos lo antes posible.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="mailto:info@mergewonderpark.com" class="inline-block bg-rosa text-white text-lg py-3 px-8 rounded-full font-semibold hover:bg-amarillo transition-all duration-300 btn-hover magic-glow-pink flex items-center justify-center gap-2">
+                            <span>Enviar Email</span>
+                            <span>✉️</span>
+                        </a>
+                        <a href="tel:+56229876543" class="inline-block bg-white text-rosa border-2 border-rosa text-lg py-3 px-8 rounded-full font-semibold hover:bg-rosa hover:text-white transition-all duration-300 btn-hover flex items-center justify-center gap-2">
+                            <span>Llamar Ahora</span>
+                            <span>📞</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estilos CSS específicos para esta página -->
+    <style>
+        /* Efectos de brillo para elementos destacados */
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow:hover {
+            box-shadow: 0 0 25px rgba(255, 197, 1, 0.7);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow-pink:hover {
+            box-shadow: 0 0 25px rgba(218, 43, 144, 0.7);
+        }
+
+        /* Efecto de elevación para botones */
+        .btn-hover:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Estilos para enlaces en texto */
+        a.text-rosa {
+            color: #da2b90;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a.text-rosa:hover {
+            color: #ffc501;
+            text-decoration: underline;
+        }
+
+        /* Animación para el pin del mapa */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .map-pin {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Colores de fondo con opacidad */
+        .bg-amarillo\/10 {
+            background-color: rgba(255, 197, 1, 0.1);
+        }
+
+        .bg-rosa\/10 {
+            background-color: rgba(218, 43, 144, 0.1);
+        }
+
+        .bg-amarillo\/20 {
+            background-color: rgba(255, 197, 1, 0.2);
+        }
+
+        .bg-rosa\/20 {
+            background-color: rgba(218, 43, 144, 0.2);
+        }
+
+        /* Estilizado del formulario */
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #da2b90;
+            box-shadow: 0 0 0 3px rgba(218, 43, 144, 0.2);
+        }
+
+        /* Animación para los elementos al hacer hover */
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+
+        /* Personalización del checkbox */
+        input[type="checkbox"] {
+            accent-color: #da2b90;
+        }
+
+        /* Estilos para los campos con error */
+        .input-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Animación de carga para el botón de envío */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading::after {
+            content: "";
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            border: 2px solid white;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Efecto de desplazamiento suave para la página */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(218, 43, 144, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(218, 43, 144, 0.7);
+        }
+    </style>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between gap-8 mb-12">
+                <div class="md:w-1/3">
+                    <a href="/" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-rosa flex items-center justify-center">
+                            <span class="text-white text-xl">🏝️</span>
+                        </div>
+                        <span class="text-rosa font-bold text-xl">Merge Wonder Park</span>
+                    </a>
+                    <p class="text-gray-600 mb-6">
+                        Un juego de combinación y construcción donde ayudarás a María a recuperar su inspiración artística en un encantador pueblo costero.
+                    </p>
+
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Enlaces rápidos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Inicio</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre el juego</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Características</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Gameplay</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Soporte</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/About-us/" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre los promotores</a></li>
+                        <li><a href="/contacto/" class="text-gray-600 hover:text-rosa transition-all duration-300">Contacto</a></li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Legal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/Policy356/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de privacidad</a></li>
+                        <li><a href="/Service347/" class="text-gray-600 hover:text-rosa transition-all duration-300">Términos de uso</a></li>
+                        <li><a href="/Cookie992/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2025 Merge Wonder Park. Todos los derechos reservados.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="/Policy356/" class="text-gray-500 hover:text-rosa text-sm">Política de privacidad</a>
+                        <a href="/Service347/" class="text-gray-500 hover:text-rosa text-sm">Términos de uso</a>
+                        <a href="/Cookie992/" class="text-gray-500 hover:text-rosa text-sm">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Scripts -->
+    <script>
+        // Simple mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.querySelector('button.md\\:hidden');
+            const mobileMenu = document.querySelector('.hidden.md\\:hidden');
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // Simple animation for elements when they come into view
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section > div').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Add the CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                .animate-fade-in {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                }
+                
+                /* Magic sparkle effect */
+                @keyframes sparkle {
+                    0% { transform: scale(1); opacity: 0.8; }
+                    50% { transform: scale(1.2); opacity: 1; }
+                    100% { transform: scale(1); opacity: 0.8; }
+                }
+                
+                .magic-sparkle {
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: white;
+                    pointer-events: none;
+                    animation: sparkle 2s infinite;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add magic sparkles to certain elements
+            const addSparkles = (element, count = 5) => {
+                for (let i = 0; i < count; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('magic-sparkle');
+
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+
+                    sparkle.style.left = `${posX}%`;
+                    sparkle.style.top = `${posY}%`;
+
+                    // Random size
+                    const size = 4 + Math.random() * 6;
+                    sparkle.style.width = `${size}px`;
+                    sparkle.style.height = `${size}px`;
+
+                    // Random color (yellow or pink)
+                    const colors = ['#ffc501', '#da2b90', '#ffffff'];
+                    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                    // Random animation delay
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+
+                    // Add to the element
+                    element.style.position = 'relative';
+                    element.style.overflow = 'hidden';
+                    element.appendChild(sparkle);
+                }
+            };
+
+            // Add sparkles to glowing elements
+            document.querySelectorAll('.magic-glow, .magic-glow-pink').forEach(element => {
+                addSparkles(element, 3);
+            });
+
+            // Simple hover effect for buttons
+            document.querySelectorAll('.btn-hover').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px)';
+                    button.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.1)';
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translateY(0)';
+                    button.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+        });
+    </script>
+
+
+
+
+    <!-- Magic floating elements -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add floating animation to specific elements
+            const floatingElements = document.querySelectorAll('.magic-glow, .magic-glow-pink');
+
+            floatingElements.forEach((element, index) => {
+                // Create different animation for each element
+                const delay = index * 0.2;
+                const duration = 3 + Math.random() * 2;
+
+                element.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+            });
+
+            // Add the floating animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floating {
+                    0% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                    100% { transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+
+
+    <?php include '../cookie-consent.php'; ?>
+</body>
+
+</html>

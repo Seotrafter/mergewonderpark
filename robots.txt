@@ -1,0 +1,15 @@
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /About-us/
+
+
+Sitemap: https://mergewonderpark.com/sitemap.xml
+
+
+Crawl-delay: 10

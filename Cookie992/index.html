@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Wonder Park - Juego Offline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='icon' href='/src/icons/logo.png' type='image/x-icon'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amarillo: '#ffc501',
+                        rosa: '#da2b90',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-white overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full bg-rosa flex items-center justify-center magic-glow">
+                        <span class="text-white text-2xl">🏝️</span>
+                    </div>
+                    <span class="text-rosa font-bold text-xl md:text-2xl">Merge Wonder Park</span>
+                </a>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                    <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                    <a href="/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Descargar</a>
+                    <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Sobre los promotores</a>
+                    <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Contactos</a>
+                </nav>
+
+                <button class="md:hidden text-rosa text-2xl">☰</button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="hidden md:hidden bg-white w-full pb-4 px-4">
+            <div class="flex flex-col space-y-3">
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                <a href="/" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                <a href="/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300 text-center">Descargar</a>
+                <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Sobre los promotores</a>
+                <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Contactos</a>
+            </div>
+        </div>
+    </header>
+    <!-- Cookie Policy Section - Header -->
+    <section class="py-20 bg-gradient-to-b from-amarillo/10 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-thin mb-6 text-gray-800 leading-tight mt-16">
+                    Política de <span class="text-rosa font-semibold">Cookies</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+                    Información sobre cómo utilizamos las cookies en Merge Wonder Park
+                </p>
+            </div>
+
+            <div class="relative mb-16">
+                <div class="absolute -inset-1 bg-gradient-to-r from-amarillo to-rosa rounded-2xl opacity-50 blur"></div>
+                <div class="relative bg-white rounded-2xl p-8 shadow-xl">
+                    <div class="prose max-w-none text-gray-600 text-lg font-light">
+                        <p>
+                            Merge Wonder Park utiliza cookies y tecnologías similares para mejorar tu experiencia en nuestro sitio web y aplicaciones. Esta Política de Cookies explica cómo y por qué utilizamos estas tecnologías, así como las opciones que tienes para controlarlas.
+                        </p>
+                        <p>
+                            Al continuar utilizando nuestro sitio web, aceptas el uso de cookies de acuerdo con esta política. Si no estás de acuerdo con nuestro uso de cookies, deberás ajustar la configuración de tu navegador o dejar de utilizar nuestro sitio web.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ¿Qué son las Cookies? -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">🍪</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">¿Qué son las Cookies?</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (computadora, tablet o teléfono móvil) cuando visitas un sitio web. Se utilizan ampliamente para hacer que los sitios web funcionen de manera más eficiente, así como para proporcionar información a los propietarios del sitio.
+                                </p>
+                                <p>
+                                    Las cookies permiten que un sitio web reconozca tu dispositivo y recuerde información sobre tu visita, como tus preferencias de idioma, tamaño de fuente y otras configuraciones. Esto puede hacer que tu próxima visita sea más fácil y que el sitio te resulte más útil.
+                                </p>
+                                <p>
+                                    Las cookies también permiten recopilar información estadística sobre cómo utilizas nuestro sitio, lo que nos ayuda a mejorarlo y personalizar tu experiencia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tipos de Cookies que Utilizamos -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-amarillo/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow">
+                            <span class="text-4xl">🧩</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-amarillo mb-2">Tipos de Cookies</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    En Merge Wonder Park utilizamos diferentes tipos de cookies con distintos propósitos:
+                                </p>
+
+                                <!-- Cookie Types Accordion -->
+                                <div class="mt-6 space-y-4">
+                                    <!-- Cookies Estrictamente Necesarias -->
+                                    <div class="border border-gray-200 rounded-xl overflow-hidden">
+                                        <div class="bg-amarillo/5 px-6 py-4 flex justify-between items-center cursor-pointer">
+                                            <h3 class="text-xl font-medium text-gray-800">Cookies Estrictamente Necesarias</h3>
+                                            <span class="text-rosa">✓</span>
+                                        </div>
+                                        <div class="px-6 py-4 bg-white">
+                                            <p class="mb-2">
+                                                Estas cookies son esenciales para que puedas navegar por el sitio web y utilizar sus funciones. Sin estas cookies, no podríamos proporcionar los servicios que has solicitado, como las funciones de seguridad o el acceso a áreas seguras del sitio.
+                                            </p>
+                                            <table class="min-w-full border-collapse">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Nombre</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Propósito</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Duración</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-200">
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">session_id</td>
+                                                        <td class="px-4 py-2 text-sm">Mantiene tu sesión activa mientras navegas</td>
+                                                        <td class="px-4 py-2 text-sm">Sesión</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">cookie_consent</td>
+                                                        <td class="px-4 py-2 text-sm">Recuerda tu elección sobre cookies</td>
+                                                        <td class="px-4 py-2 text-sm">1 año</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">csrf_token</td>
+                                                        <td class="px-4 py-2 text-sm">Protege contra ataques CSRF</td>
+                                                        <td class="px-4 py-2 text-sm">Sesión</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Cookies de Rendimiento -->
+                                    <div class="border border-gray-200 rounded-xl overflow-hidden">
+                                        <div class="bg-amarillo/5 px-6 py-4 flex justify-between items-center cursor-pointer">
+                                            <h3 class="text-xl font-medium text-gray-800">Cookies de Rendimiento y Análisis</h3>
+                                            <span class="text-rosa">✓</span>
+                                        </div>
+                                        <div class="px-6 py-4 bg-white">
+                                            <p class="mb-2">
+                                                Estas cookies nos permiten contar las visitas y las fuentes de tráfico para medir y mejorar el rendimiento de nuestro sitio. Nos ayudan a saber qué páginas son las más y menos populares, y a ver cómo los visitantes se mueven por el sitio.
+                                            </p>
+                                            <table class="min-w-full border-collapse">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Nombre</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Propósito</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Duración</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-200">
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">_ga</td>
+                                                        <td class="px-4 py-2 text-sm">Google Analytics - Distingue usuarios únicos</td>
+                                                        <td class="px-4 py-2 text-sm">2 años</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">_gid</td>
+                                                        <td class="px-4 py-2 text-sm">Google Analytics - Identifica usuarios</td>
+                                                        <td class="px-4 py-2 text-sm">24 horas</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">_gat</td>
+                                                        <td class="px-4 py-2 text-sm">Google Analytics - Limita la tasa de solicitudes</td>
+                                                        <td class="px-4 py-2 text-sm">1 minuto</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cookies de Funcionalidad -->
+                                    <div class="border border-gray-200 rounded-xl overflow-hidden">
+                                        <div class="bg-amarillo/5 px-6 py-4 flex justify-between items-center cursor-pointer">
+                                            <h3 class="text-xl font-medium text-gray-800">Cookies de Funcionalidad</h3>
+                                            <span class="text-rosa">✓</span>
+                                        </div>
+                                        <div class="px-6 py-4 bg-white">
+                                            <p class="mb-2">
+                                                Estas cookies permiten que el sitio web proporcione una funcionalidad y personalización mejoradas. Pueden ser establecidas por nosotros o por proveedores externos cuyos servicios hemos añadido a nuestras páginas.
+                                            </p>
+                                            <table class="min-w-full border-collapse">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Nombre</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Propósito</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Duración</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-200">
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">lang</td>
+                                                        <td class="px-4 py-2 text-sm">Recuerda la configuración de idioma seleccionada</td>
+                                                        <td class="px-4 py-2 text-sm">1 año</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">theme</td>
+                                                        <td class="px-4 py-2 text-sm">Recuerda la preferencia de tema (claro/oscuro)</td>
+                                                        <td class="px-4 py-2 text-sm">1 año</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Cookies de Publicidad -->
+                                    <div class="border border-gray-200 rounded-xl overflow-hidden">
+                                        <div class="bg-amarillo/5 px-6 py-4 flex justify-between items-center cursor-pointer">
+                                            <h3 class="text-xl font-medium text-gray-800">Cookies de Publicidad</h3>
+                                            <span class="text-rosa">✓</span>
+                                        </div>
+                                        <div class="px-6 py-4 bg-white">
+                                            <p class="mb-2">
+                                                Estas cookies se utilizan para hacer que los mensajes publicitarios sean más relevantes para ti y tus intereses. También realizan funciones como evitar que los mismos anuncios aparezcan continuamente, asegurando que los anuncios se muestren correctamente y, en algunos casos, seleccionando anuncios basados en tus intereses.
+                                            </p>
+                                            <table class="min-w-full border-collapse">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Nombre</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Propósito</th>
+                                                        <th class="px-4 py-2 text-left text-sm text-gray-600">Duración</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-200">
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">_fbp</td>
+                                                        <td class="px-4 py-2 text-sm">Facebook - Seguimiento de conversiones</td>
+                                                        <td class="px-4 py-2 text-sm">3 meses</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">IDE</td>
+                                                        <td class="px-4 py-2 text-sm">Google DoubleClick - Personalización de anuncios</td>
+                                                        <td class="px-4 py-2 text-sm">1 año</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-sm">MUID</td>
+                                                        <td class="px-4 py-2 text-sm">Microsoft Advertising - Identificación de usuarios</td>
+                                                        <td class="px-4 py-2 text-sm">1 año</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cómo Controlar las Cookies -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">⚙️</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">Control de Cookies</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Puedes controlar y/o eliminar las cookies según tus preferencias. Puedes eliminar todas las cookies que ya están en tu dispositivo y puedes configurar la mayoría de los navegadores para que no las acepten. Sin embargo, si lo haces, es posible que tengas que ajustar manualmente algunas preferencias cada vez que visites un sitio y que algunos servicios y funcionalidades no funcionen.
+                                </p>
+
+                                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-4">Administrar tus preferencias de cookies</h3>
+
+                                <p>Puedes controlar las cookies de diferentes maneras:</p>
+
+                                <div class="space-y-4 mt-4">
+                                    <div class="bg-gray-50 p-4 rounded-xl">
+                                        <h4 class="text-lg font-medium text-amarillo mb-2">Configuración del navegador</h4>
+                                        <p>
+                                            La mayoría de los navegadores te permiten ver qué cookies tienes y eliminarlas individualmente o bloquear las cookies de un sitio web particular o de todos los sitios web. Ten en cuenta que si eliminas todas las cookies, perderás todos tus ajustes guardados, incluyendo la preferencia de no utilizar cookies, ya que esto en sí mismo requiere una cookie.
+                                        </p>
+                                    </div>
+
+                                    <div class="bg-gray-50 p-4 rounded-xl">
+                                        <h4 class="text-lg font-medium text-amarillo mb-2">Instrucciones según navegador</h4>
+                                        <ul class="list-disc pl-6 space-y-2">
+                                            <li><a href="#" class="text-rosa hover:underline">Google Chrome</a></li>
+                                            <li><a href="#" class="text-rosa hover:underline">Mozilla Firefox</a></li>
+                                            <li><a href="#" class="text-rosa hover:underline">Microsoft Edge</a></li>
+                                            <li><a href="#" class="text-rosa hover:underline">Safari</a></li>
+                                            <li><a href="#" class="text-rosa hover:underline">Opera</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="bg-gray-50 p-4 rounded-xl">
+                                        <h4 class="text-lg font-medium text-amarillo mb-2">Preferencias de publicidad</h4>
+                                        <p>
+                                            Para gestionar el uso de cookies con fines publicitarios, puedes visitar:
+                                        </p>
+                                        <ul class="list-disc pl-6 space-y-2 mt-2">
+                                            <li><a href="https://www.aboutads.info/choices" class="text-rosa hover:underline">Digital Advertising Alliance</a></li>
+                                            <li><a href="https://www.youronlinechoices.com" class="text-rosa hover:underline">Your Online Choices (EU)</a></li>
+                                            <li><a href="https://optout.networkadvertising.org" class="text-rosa hover:underline">Network Advertising Initiative</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="bg-gray-50 p-4 rounded-xl">
+                                        <h4 class="text-lg font-medium text-amarillo mb-2">Plugins para la gestión de cookies</h4>
+                                        <p>
+                                            Existen plugins para navegadores que te ayudan a gestionar las cookies. Por ejemplo:
+                                        </p>
+                                        <ul class="list-disc pl-6 space-y-2 mt-2">
+                                            <li><a href="https://tools.google.com/dlpage/gaoptout" class="text-rosa hover:underline">Google Analytics Opt-out Browser Add-on</a></li>
+                                            <li><a href="https://www.ghostery.com" class="text-rosa hover:underline">Ghostery</a></li>
+                                            <li><a href="https://www.privacybadger.org" class="text-rosa hover:underline">Privacy Badger</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cookies de Terceros -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-amarillo/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow">
+                            <span class="text-4xl">🔄</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-amarillo mb-2">Cookies de Terceros</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Algunos de nuestros socios comerciales (por ejemplo, anunciantes) utilizan cookies en nuestro sitio. Sin embargo, no tenemos acceso ni control sobre estas cookies.
+                                </p>
+                                <p>
+                                    Esta política de cookies cubre el uso de cookies por parte de Merge Wonder Park y no cubre el uso de cookies por parte de los anunciantes. Te recomendamos que consultes las respectivas políticas de privacidad de estos terceros para obtener información más detallada sobre sus prácticas, así como para conocer tus opciones sobre ciertos usos de datos.
+                                </p>
+
+                                <div class="mt-6 bg-gray-50 p-4 rounded-xl">
+                                    <h4 class="text-lg font-medium text-amarillo mb-2">Servicios de terceros que utilizamos</h4>
+                                    <ul class="list-disc pl-6 space-y-2 mt-2">
+                                        <li>Google Analytics (análisis de uso del sitio)</li>
+                                        <li>Google AdSense (publicidad)</li>
+                                        <li>Facebook Pixel (seguimiento de conversiones)</li>
+                                        <li>Hotjar (análisis de comportamiento)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cambios en la Política de Cookies -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/4">
+                        <div class="bg-rosa/10 w-20 h-20 rounded-full flex items-center justify-center mb-4 magic-glow-pink">
+                            <span class="text-4xl">📝</span>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-rosa mb-2">Cambios en la Política</h2>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <div class="prose max-w-none text-gray-600 text-lg font-light">
+                                <p>
+                                    Podemos actualizar esta Política de Cookies ocasionalmente para reflejar, por ejemplo, cambios en las cookies que utilizamos o por otras razones operativas, legales o regulatorias. Te recomendamos que visites regularmente esta página para estar informado sobre el uso de cookies y tecnologías relacionadas.
+                                </p>
+                                <p>
+                                    La fecha en la parte inferior de esta Política de Cookies indica cuándo se actualizó por última vez.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacto -->
+            <div class="mb-16 text-center">
+                <div class="bg-gradient-to-r from-amarillo/20 to-rosa/20 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 mx-auto magic-glow">
+                        <span class="text-4xl">📧</span>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">¿Preguntas sobre cookies?</h2>
+                    <p class="text-lg text-gray-600 mb-6 font-light">
+                        Si tienes dudas o necesitas más información sobre nuestra Política de Cookies, no dudes en contactarnos.
+                    </p>
+                    <a href="/contacto/" class="inline-block bg-rosa text-white text-lg py-3 px-8 rounded-full font-semibold hover:bg-amarillo transition-all duration-300 btn-hover magic-glow-pink">
+                        Contactar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Última actualización -->
+            <div class="text-center text-gray-500 text-sm mb-8">
+                Última actualización: 26 de marzo de 2025
+            </div>
+        </div>
+    </section>
+
+    <!-- Estilos CSS específicos para esta página -->
+    <style>
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow:hover {
+            box-shadow: 0 0 25px rgba(255, 197, 1, 0.7);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow-pink:hover {
+            box-shadow: 0 0 25px rgba(218, 43, 144, 0.7);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+        }
+
+        .prose a {
+            color: #da2b90;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .prose a:hover {
+            text-decoration: underline;
+            color: #ffc501;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .bg-amarillo\/10 {
+            background-color: rgba(255, 197, 1, 0.1);
+        }
+
+        .bg-rosa\/10 {
+            background-color: rgba(218, 43, 144, 0.1);
+        }
+
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow:hover {
+            box-shadow: 0 0 25px rgba(255, 197, 1, 0.7);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .magic-glow-pink:hover {
+            box-shadow: 0 0 25px rgba(218, 43, 144, 0.7);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+        }
+
+        .prose a {
+            color: #da2b90;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .prose a:hover {
+            text-decoration: underline;
+            color: #ffc501;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .bg-amarillo\/10 {
+            background-color: rgba(255, 197, 1, 0.1);
+        }
+
+        .bg-rosa\/10 {
+            background-color: rgba(218, 43, 144, 0.1);
+        }
+
+        /* Estilos específicos para las tablas de cookies */
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        th {
+            background-color: rgba(255, 197, 1, 0.1);
+            font-weight: 500;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(247, 250, 252, 0.8);
+        }
+
+        /* Animaciones para los elementos cuando aparecen en pantalla */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos para los botones del acordeón */
+        .accordion-button {
+            background-color: rgba(255, 197, 1, 0.05);
+            border: none;
+            border-radius: 0.5rem 0.5rem 0 0;
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-button:hover {
+            background-color: rgba(255, 197, 1, 0.1);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 1rem;
+            border: 1px solid rgba(255, 197, 1, 0.2);
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+        .accordion-button[aria-expanded="true"] {
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+
+        /* Efectos de brillo para destacar información importante */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 197, 1, 0.1) 0%, rgba(218, 43, 144, 0.1) 100%);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(135deg, #ffc501 0%, #da2b90 100%);
+            z-index: -1;
+            border-radius: 1rem;
+            opacity: 0.3;
+            filter: blur(8px);
+        }
+
+        /* Efectos interactivos para mejorar la experiencia del usuario */
+        .interactive-element {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos para el panel de configuración de cookies */
+        .cookie-settings-panel {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.toggle-slider {
+            background-color: #da2b90;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(24px);
+        }
+    </style>
+
+    <!-- Script para funcionalidades interactivas -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de entrada para elementos al hacer scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Funcionalidad del acordeón para tipos de cookies
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                    button.setAttribute('aria-expanded', !isExpanded);
+                    content.style.display = isExpanded ? 'none' : 'block';
+                });
+            });
+        });
+    </script>
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between gap-8 mb-12">
+                <div class="md:w-1/3">
+                    <a href="/" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-rosa flex items-center justify-center">
+                            <span class="text-white text-xl">🏝️</span>
+                        </div>
+                        <span class="text-rosa font-bold text-xl">Merge Wonder Park</span>
+                    </a>
+                    <p class="text-gray-600 mb-6">
+                        Un juego de combinación y construcción donde ayudarás a María a recuperar su inspiración artística en un encantador pueblo costero.
+                    </p>
+
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Enlaces rápidos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Inicio</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre el juego</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Características</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-rosa transition-all duration-300">Gameplay</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Soporte</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/About-us/" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre los promotores</a></li>
+                        <li><a href="/contacto/" class="text-gray-600 hover:text-rosa transition-all duration-300">Contacto</a></li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Legal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/Policy356/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de privacidad</a></li>
+                        <li><a href="/Service347/" class="text-gray-600 hover:text-rosa transition-all duration-300">Términos de uso</a></li>
+                        <li><a href="/Cookie992/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2025 Merge Wonder Park. Todos los derechos reservados.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="/Policy356/" class="text-gray-500 hover:text-rosa text-sm">Política de privacidad</a>
+                        <a href="/Service347/" class="text-gray-500 hover:text-rosa text-sm">Términos de uso</a>
+                        <a href="/Cookie992/" class="text-gray-500 hover:text-rosa text-sm">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Scripts -->
+    <script>
+        // Simple mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.querySelector('button.md\\:hidden');
+            const mobileMenu = document.querySelector('.hidden.md\\:hidden');
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // Simple animation for elements when they come into view
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section > div').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Add the CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                .animate-fade-in {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                }
+                
+                /* Magic sparkle effect */
+                @keyframes sparkle {
+                    0% { transform: scale(1); opacity: 0.8; }
+                    50% { transform: scale(1.2); opacity: 1; }
+                    100% { transform: scale(1); opacity: 0.8; }
+                }
+                
+                .magic-sparkle {
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: white;
+                    pointer-events: none;
+                    animation: sparkle 2s infinite;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add magic sparkles to certain elements
+            const addSparkles = (element, count = 5) => {
+                for (let i = 0; i < count; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('magic-sparkle');
+
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+
+                    sparkle.style.left = `${posX}%`;
+                    sparkle.style.top = `${posY}%`;
+
+                    // Random size
+                    const size = 4 + Math.random() * 6;
+                    sparkle.style.width = `${size}px`;
+                    sparkle.style.height = `${size}px`;
+
+                    // Random color (yellow or pink)
+                    const colors = ['#ffc501', '#da2b90', '#ffffff'];
+                    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                    // Random animation delay
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+
+                    // Add to the element
+                    element.style.position = 'relative';
+                    element.style.overflow = 'hidden';
+                    element.appendChild(sparkle);
+                }
+            };
+
+            // Add sparkles to glowing elements
+            document.querySelectorAll('.magic-glow, .magic-glow-pink').forEach(element => {
+                addSparkles(element, 3);
+            });
+
+            // Simple hover effect for buttons
+            document.querySelectorAll('.btn-hover').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px)';
+                    button.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.1)';
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translateY(0)';
+                    button.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+        });
+    </script>
+
+
+
+
+    <!-- Magic floating elements -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add floating animation to specific elements
+            const floatingElements = document.querySelectorAll('.magic-glow, .magic-glow-pink');
+
+            floatingElements.forEach((element, index) => {
+                // Create different animation for each element
+                const delay = index * 0.2;
+                const duration = 3 + Math.random() * 2;
+
+                element.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+            });
+
+            // Add the floating animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floating {
+                    0% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                    100% { transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+
+    <?php include '../cookie-consent.php'; ?>
+</body>
+
+</html>

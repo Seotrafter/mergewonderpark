@@ -1,0 +1,289 @@
+<?php
+$cookieConsentHtml = '
+<style>
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.95); /* Fondo blanco con transparencia para coincidir con el tema claro */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -4px 0 #ffc501; /* Cambiado al amarillo del sitio */
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border-top: 4px solid #da2b90; /* Cambiado al rosa del sitio */
+    font-family: "Poppins", sans-serif;
+}
+
+.cookie-container {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.cookie-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.cookie-title {
+    font-family: "Poppins", sans-serif; 
+    font-size: 1.2rem;
+    color: #da2b90; /* Cambiado al rosa del sitio */
+    font-weight: 300; /* Más delgado para coincidir con el estilo del sitio */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-right: 1.5rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(218, 43, 144, 0.3); /* Sombra rosa suave */
+}
+
+.cookie-title i {
+    color: #ffc501; /* Cambiado al amarillo del sitio */
+    font-size: 1.25rem;
+}
+
+.cookie-text {
+    color: #666666; /* Gris oscuro para el texto principal, coincidiendo con los textos del sitio */
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 300; /* Más delgado */
+    font-family: "Poppins", sans-serif;
+}
+
+.cookie-link {
+    color: #da2b90; /* Cambiado al rosa del sitio */
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cookie-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #da2b90; /* Cambiado al rosa del sitio */
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.cookie-link:hover::after {
+    transform: scaleX(1);
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.cookie-button-reject,
+.cookie-button-accept {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.03em;
+    border-radius: 24px; /* Bordes redondeados para coincidir con los botones del sitio */
+}
+
+.cookie-button-reject {
+    background: transparent;
+    color: #666666; /* Gris para coincidir con el sitio */
+    border: 2px solid #da2b90; /* Borde rosa */
+    position: relative;
+    overflow: hidden;
+}
+
+.cookie-button-reject:hover {
+    background: rgba(218, 43, 144, 0.1); /* Fondo rosa transparente al hover */
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(218, 43, 144, 0.2); /* Sombra rosa suave */
+    color: #da2b90; /* Texto rosa al hover */
+}
+
+.cookie-button-accept {
+    background: #da2b90; /* Fondo rosa */
+    color: white;
+    border: none;
+    font-weight: 400;
+    box-shadow: 0 0 15px rgba(218, 43, 144, 0.3); /* Sombra rosa */
+    position: relative;
+    overflow: hidden;
+}
+
+.cookie-button-accept:before,
+.cookie-button-reject:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.5s ease;
+}
+
+.cookie-button-accept:hover:before,
+.cookie-button-reject:hover:before {
+    left: 100%;
+}
+
+.cookie-button-accept:hover {
+    transform: translateY(-2px);
+    background: #ffc501; /* Cambio a amarillo al hover, para alternar colores como en el sitio */
+    box-shadow: 0 0 20px rgba(255, 197, 1, 0.6); /* Sombra amarilla */
+}
+
+.cookie-button-reject:active,
+.cookie-button-accept:active {
+    transform: translateY(1px);
+}
+
+/* Agregar el efecto de brillo mágico similar al sitio */
+.cookie-button-accept {
+    position: relative;
+}
+
+.cookie-button-accept::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(90deg, #ffc501, #da2b90);
+    border-radius: 26px;
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(8px);
+    transition: opacity 0.3s;
+}
+
+.cookie-button-accept:hover::after {
+    opacity: 0.9;
+    filter: blur(12px);
+}
+
+@media (max-width: 992px) {
+    .cookie-container {
+        flex-direction: column;
+        padding: 1.25rem;
+    }
+
+    .cookie-content {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1.25rem;
+        width: 100%;
+    }
+
+    .cookie-title {
+        margin-bottom: 0.75rem;
+    }
+
+    .cookie-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 576px) {
+    .cookie-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+    
+    .cookie-button-reject,
+    .cookie-button-accept {
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+<div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-container">
+        <div class="cookie-content">
+            <h3 class="cookie-title">
+                <i class="fas fa-cookie-bite"></i>
+                Política de Cookies
+            </h3>
+            <p class="cookie-text">
+                Merge Wonder Park utiliza cookies para mejorar tu experiencia de juego. Al continuar usando nuestro sitio web, aceptas el uso de cookies. Para más información, puedes leer nuestra
+                <a href="/Policy356/" class="cookie-link">Política de Privacidad</a>,
+                <a href="/Service347/" class="cookie-link">Términos de Servicio</a>,
+                y
+                <a href="/Cookie992/" class="cookie-link">Política de Cookies</a>.
+            </p>
+        </div>
+        
+        <div class="cookie-buttons">
+            <button id="rejectCookies" class="cookie-button-reject">
+                Rechazar
+            </button>
+            <button id="acceptCookies" class="cookie-button-accept">
+                Aceptar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+   const cookieConsent = document.getElementById("cookieConsent");
+   const acceptBtn = document.getElementById("acceptCookies");
+   const rejectBtn = document.getElementById("rejectCookies");
+   
+   if (!getCookie("aprenderd_cookie_consent")) {
+       setTimeout(() => {
+           cookieConsent.style.transform = "translateX(0)";
+       }, 1000);
+   }
+
+   function getCookie(name) {
+       let matches = document.cookie.match(new RegExp(
+           "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"
+       ));
+       return matches ? decodeURIComponent(matches[1]) : undefined;
+   }
+   
+   function setCookie(name, value, days) {
+       const date = new Date();
+       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+       const expires = "; expires=" + date.toUTCString();
+       document.cookie = name + "=" + value + expires + "; path=/; SameSite=Strict; Secure";
+   }
+
+   function handleConsent(consent) {
+       setCookie("aprenderd_cookie_consent", consent, 365);
+       cookieConsent.style.transform = "translateX(120%)";
+       
+       setTimeout(() => {
+           cookieConsent.remove();
+       }, 500);
+   }
+
+   acceptBtn.addEventListener("click", () => handleConsent("accepted"));
+   rejectBtn.addEventListener("click", () => handleConsent("rejected"));
+});
+</script>
+';
+
+if (!isset($_COOKIE["aprenderd_cookie_consent"])) {
+    echo $cookieConsentHtml;
+}

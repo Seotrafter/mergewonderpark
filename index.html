@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Wonder Park - Juego Offline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='icon' href='/src/icons/logo.png' type='image/x-icon'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amarillo: '#ffc501',
+                        rosa: '#da2b90',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .magic-glow {
+            box-shadow: 0 0 15px rgba(255, 197, 1, 0.5);
+        }
+
+        .magic-glow-pink {
+            box-shadow: 0 0 15px rgba(218, 43, 144, 0.5);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-white overflow-x-hidden">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <a href="/" class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full bg-rosa flex items-center justify-center magic-glow">
+                        <span class="text-white text-2xl">🏝️</span>
+                    </div>
+                    <span class="text-rosa font-bold text-xl md:text-2xl">Merge Wonder Park</span>
+                </a>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                    <a href="#sobre" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                    <a href="#caracteristicas" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                    <a href="#gameplay" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                    <a href="#galeria" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                    <a href="#descargar" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Descargar</a>
+                    <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Sobre los promotores</a>
+                    <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300">Contactos</a>
+                </nav>
+
+                <button class="md:hidden text-rosa text-2xl">☰</button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="hidden md:hidden bg-white w-full pb-4 px-4">
+            <div class="flex flex-col space-y-3">
+                <a href="#inicio" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Inicio</a>
+                <a href="#sobre" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Sobre el Juego</a>
+                <a href="#caracteristicas" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Características</a>
+                <a href="#gameplay" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Gameplay</a>
+                <a href="#galeria" class="text-gray-700 hover:text-rosa font-medium transition duration-300">Galería</a>
+                <a href="#descargar" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300 text-center">Descargar</a>
+                <a href="/About-us/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Sobre los promotores</a>
+                <a href="/contacto/" class="text-white bg-rosa hover:bg-amarillo px-4 py-2 rounded-full font-semibold transition duration-300  text-center">Contactos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-28 pb-20 bg-gradient-to-b from-amarillo/10 to-rosa/10 overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-amarillo rounded-full filter blur-3xl opacity-20 -mr-20 -mt-20"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-rosa rounded-full filter blur-3xl opacity-20 -ml-20 -mb-20"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col items-center text-center">
+                <h1 class="text-4xl md:text-6xl font-thin mb-6 text-gray-800 leading-tight">
+                    Descubre el mágico mundo de <br>
+                    <span class="text-rosa font-semibold">Merge Wonder Park</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl font-light mb-10">
+                    Ayuda a María a recuperar su inspiración artística combinando objetos y creando hermosas villas en un encantador pueblo costero.
+                </p>
+
+                <div class="flex flex-col md:flex-row gap-4 md:gap-6">
+                    <a href="#descargar" class="bg-rosa text-white text-xl py-4 px-8 rounded-full font-semibold hover:bg-amarillo transition-all duration-300 btn-hover magic-glow-pink">
+                        Descargar Gratis
+                    </a>
+                    <a href="#gameplay" class="bg-white text-rosa border-2 border-rosa text-xl py-4 px-8 rounded-full font-semibold hover:bg-rosa hover:text-white transition-all duration-300 btn-hover">
+                        Ver Gameplay
+                    </a>
+                </div>
+
+
+
+                <div class="mt-10 flex items-center justify-center gap-6">
+                    <div class="flex flex-col items-center">
+                        <span class="text-amarillo text-4xl">⭐⭐⭐⭐½</span>
+                        <p class="text-gray-600 mt-2">4,5 estrellas</p>
+                        <p class="text-gray-500 text-sm">2.250 reseñas</p>
+                    </div>
+
+                    <div class="h-12 w-px bg-gray-300"></div>
+
+                    <div class="flex flex-col items-center">
+                        <span class="text-rosa text-4xl">📱</span>
+                        <p class="text-gray-600 mt-2">100.000+</p>
+                        <p class="text-gray-500 text-sm">Descargas</p>
+                    </div>
+
+                    <div class="h-12 w-px bg-gray-300"></div>
+
+                    <div class="flex flex-col items-center">
+                        <span class="text-amarillo text-4xl">👪</span>
+                        <p class="text-gray-600 mt-2">Para todos</p>
+                        <p class="text-gray-500 text-sm">Desde 3 años</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Game Section -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-thin mb-6 text-amarillo">La historia de <span class="text-rosa font-semibold">María</span></h2>
+
+                    <p class="text-xl text-gray-600 mb-6 font-light">
+                        En Merge Wonder Park, ayudarás a María, una talentosa artista que ha perdido su inspiración, a recuperar su pasión creativa.
+                    </p>
+
+                    <p class="text-xl text-gray-600 mb-6 font-light">
+                        Sintiéndose frustrada por un bloqueo artístico y las dificultades de la vida, María decide visitar un encantador pueblo costero para encontrar nueva inspiración.
+                    </p>
+
+                    <p class="text-xl text-gray-600 mb-6 font-light">
+                        Su objetivo es renovar su pasión artística construyendo villas con un estilo único en este ambiente fresco e inspirador.
+                    </p>
+
+                    <div class="flex gap-4 mt-8">
+                        <span class="bg-rosa/10 text-rosa px-4 py-2 rounded-full text-lg">🎨 Inspiración</span>
+                        <span class="bg-amarillo/10 text-amarillo px-4 py-2 rounded-full text-lg">🏝️ Aventura</span>
+                        <span class="bg-rosa/10 text-rosa px-4 py-2 rounded-full text-lg">✨ Creatividad</span>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-rosa to-amarillo rounded-2xl opacity-50 blur"></div>
+                    <img src="/src/img/story.png" alt="María, la artista" class="relative rounded-2xl shadow-xl w-full magic-glow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="caracteristicas" class="py-20 bg-gradient-to-b from-rosa/10 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-thin mb-6">Características <span class="text-rosa font-semibold">Principales</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+                    Descubre todas las increíbles características que hacen de Merge Wonder Park una experiencia única y encantadora.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 magic-glow transform hover:-translate-y-2">
+                    <div class="bg-amarillo/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl">🔄</span>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-amarillo">Mecánica de Combinación</h3>
+                    <p class="text-gray-600 text-lg font-light">
+                        Combina tres objetos idénticos para crear elementos de nivel superior, desbloqueando nuevos recursos y decoraciones.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 magic-glow transform hover:-translate-y-2">
+                    <div class="bg-rosa/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl">🏡</span>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-rosa">Construcción Creativa</h3>
+                    <p class="text-gray-600 text-lg font-light">
+                        Diseña y construye villas únicas con tu propio estilo artístico, personalizando cada detalle para crear obras maestras arquitectónicas.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 magic-glow transform hover:-translate-y-2">
+                    <div class="bg-amarillo/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl">🗺️</span>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-amarillo">Exploración del Pueblo</h3>
+                    <p class="text-gray-600 text-lg font-light">
+                        Explora un hermoso pueblo costero, descubre secretos ocultos y desbloquea nuevas áreas mientras avanzas en tu aventura artística.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 magic-glow transform hover:-translate-y-2">
+                    <div class="bg-rosa/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl">📱</span>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-rosa">Juego Offline</h3>
+                    <p class="text-gray-600 text-lg font-light">
+                        Disfruta del juego sin necesidad de conexión a internet, ideal para jugar en cualquier momento y lugar sin preocupaciones.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 magic-glow transform hover:-translate-y-2">
+                    <div class="bg-amarillo/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl">🎮</span>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-amarillo">Niveles Progresivos</h3>
+                    <p class="text-gray-600 text-lg font-light">
+                        Avanza por desafíos de dificultad creciente que pondrán a prueba tu estrategia y habilidades de combinación.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 magic-glow transform hover:-translate-y-2">
+                    <div class="bg-rosa/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl">✨</span>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-rosa">Mundo Encantado</h3>
+                    <p class="text-gray-600 text-lg font-light">
+                        Sumérgete en un mundo lleno de magia visual y sorpresas encantadoras que inspirarán tu creatividad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="#descargar" class="inline-block bg-gradient-to-r from-amarillo to-rosa text-white text-xl py-4 px-10 rounded-full font-semibold hover:opacity-90 transition-all duration-300 btn-hover magic-glow">
+                    Descubre todas las características
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gameplay Section -->
+    <section id="gameplay" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+
+                <div class="md:w-1/2 order-2 md:order-1 relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-amarillo to-rosa rounded-2xl opacity-50 blur"></div>
+                    <img src="/src/img/trailer.png" alt="Gameplay de Merge Wonder Park" class="relative rounded-2xl shadow-xl w-full magic-glow">
+
+                </div>
+
+
+                <div class="md:w-1/2 order-1 md:order-2">
+                    <h2 class="text-3xl md:text-4xl font-thin mb-6">Descubre cómo se <span class="text-rosa font-semibold">Juega</span></h2>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-amarillo/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-amarillo font-bold">1</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Combina objetos iguales</h3>
+                                <p class="text-lg text-gray-600 font-light">
+                                    Junta tres objetos idénticos para crear elementos de nivel superior y desbloquear nuevas posibilidades.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-rosa/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-rosa font-bold">2</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Recolecta recursos especiales</h3>
+                                <p class="text-lg text-gray-600 font-light">
+                                    Obtén energía, monedas y recursos especiales para avanzar en tu construcción artística.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-amarillo/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-amarillo font-bold">3</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Construye y decora villas únicas</h3>
+                                <p class="text-lg text-gray-600 font-light">
+                                    Utiliza los elementos desbloqueados para crear hermosas villas con tu propio estilo artístico.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-rosa/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-rosa font-bold">4</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Explora y desbloquea áreas</h3>
+                                <p class="text-lg text-gray-600 font-light">
+                                    Descubre nuevas zonas del pueblo costero y revela secretos ocultos mientras avanzas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <a href="#descargar" class="bg-rosa text-white text-xl py-4 px-8 rounded-full font-semibold hover:bg-amarillo transition-all duration-300 inline-block btn-hover magic-glow-pink">
+                            Probar ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20">
+                <div class="bg-gradient-to-r from-amarillo/10 to-rosa/10 rounded-2xl p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="md:w-2/3">
+                            <h3 class="text-2xl md:text-3xl font-semibold mb-4 text-gray-800">¿Sin conexión? ¡No hay problema!</h3>
+                            <p class="text-lg text-gray-600 font-light">
+                                Merge Wonder Park es un juego completamente offline, lo que significa que puedes disfrutarlo en cualquier momento y lugar. Ideal para viajes, momentos de relax o cuando simplemente quieres desconectar del mundo online.
+                            </p>
+                        </div>
+                        <div class="md:w-1/3 flex justify-center">
+                            <div class="bg-white w-28 h-28 rounded-full flex items-center justify-center shadow-lg magic-glow">
+                                <span class="text-6xl">📴</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="py-20 bg-gradient-to-b from-white to-amarillo/10">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-thin mb-6">Galería <span class="text-rosa font-semibold">de Imágenes</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+                    Explora el mágico mundo de Merge Wonder Park a través de estas fascinantes imágenes del juego.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Image 1 -->
+                <div class="relative group overflow-hidden rounded-2xl">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-amarillo to-rosa opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative overflow-hidden rounded-2xl">
+                        <img src="/src/img/gallery1.png" alt="Villa costera" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end">
+                            <p class="text-white p-4 font-medium">Villa costera con vista al mar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="relative group overflow-hidden rounded-2xl">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-amarillo to-rosa opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative overflow-hidden rounded-2xl">
+                        <img src="/src/img/gallery2.png" alt="Elementos combinables" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end">
+                            <p class="text-white p-4 font-medium">Elementos combinables del juego</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="relative group overflow-hidden rounded-2xl">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-amarillo to-rosa opacity-75 blur group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative overflow-hidden rounded-2xl">
+                        <img src="/src/img/gallery3.png" alt="Personaje María" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end">
+                            <p class="text-white p-4 font-medium">María, la protagonista</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="descargar" class="py-20 bg-gradient-to-b from-amarillo/10 to-rosa/10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-5xl font-thin mb-6">¡Comienza tu <span class="text-rosa font-semibold">Aventura!</span></h2>
+
+                    <p class="text-xl text-gray-600 mb-6 font-light">
+                        Descarga ahora Merge Wonder Park y ayuda a María a recuperar su inspiración artística en este encantador juego offline de combinación y construcción.
+                    </p>
+
+                    <div class="space-y-6 mb-10">
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-amarillo/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-amarillo">✓</span>
+                            </div>
+                            <p class="text-lg text-gray-600 font-light">
+                                <span class="font-semibold">100% Gratuito</span> - Disfruta de la experiencia completa sin costos ocultos
+                            </p>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-rosa/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-rosa">✓</span>
+                            </div>
+                            <p class="text-lg text-gray-600 font-light">
+                                <span class="font-semibold">Juego Offline</span> - Juega sin necesidad de conexión a internet
+                            </p>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-amarillo/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-amarillo">✓</span>
+                            </div>
+                            <p class="text-lg text-gray-600 font-light">
+                                <span class="font-semibold">Actualizaciones regulares</span> - Nuevos contenidos y mejoras frecuentes
+                            </p>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-rosa/20 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-rosa">✓</span>
+                            </div>
+                            <p class="text-lg text-gray-600 font-light">
+                                <span class="font-semibold">Para todas las edades</span> - Diversión para toda la familia desde los 3 años
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <a href="https://apps.apple.com/ua/app/merge-wonder-park/id6630366925?" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white text-lg py-4 px-6 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 btn-hover">
+                            <span class="text-3xl">🍎</span>
+                            <div class="text-left">
+                                <span class="text-xs block">Descargar en</span>
+                                <span class="text-xl">App Store</span>
+                            </div>
+                        </a>
+
+                        <a href="https://play.google.com/store/apps/details?id=com.zymobile.merge.wonder.park.gp&pcampaignid=web_share" target="_blank" class="flex items-center justify-center gap-3 bg-black text-white text-lg py-4 px-6 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 btn-hover">
+                            <span class="text-3xl">🤖</span>
+                            <div class="text-left">
+                                <span class="text-xs block">Descargar en</span>
+                                <span class="text-xl">Google Play</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-rosa to-amarillo rounded-2xl opacity-75 blur"></div>
+                    <img src="/src/img/download.png" alt="Dispositivo móvil con Merge Wonder Park" class="relative mx-auto rounded-2xl shadow-xl w-full max-w-xs magic-glow">
+
+
+                </div>
+            </div>
+
+            <div class="mt-20 bg-white rounded-2xl p-8 shadow-xl">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-1/4 flex justify-center">
+                        <div class="bg-rosa/10 w-32 h-32 rounded-full flex items-center justify-center">
+                            <span class="text-6xl">💬</span>
+                        </div>
+                    </div>
+                    <div class="md:w-3/4 text-center md:text-left">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-800">Lo que dicen nuestros jugadores</h3>
+                        <p class="text-lg text-gray-600 italic mb-4">
+                            "¡Me encanta este juego! Es muy relajante y la historia de María es muy inspiradora. Las mecánicas de combinación son adictivas y la construcción de villas me permite expresar mi creatividad. ¡Lo recomiendo totalmente!"
+                        </p>
+                        <p class="text-rosa font-medium">- Laura Martínez, jugadora desde Chile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between gap-8 mb-12">
+                <div class="md:w-1/3">
+                    <a href="/" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-rosa flex items-center justify-center">
+                            <span class="text-white text-xl">🏝️</span>
+                        </div>
+                        <span class="text-rosa font-bold text-xl">Merge Wonder Park</span>
+                    </a>
+                    <p class="text-gray-600 mb-6">
+                        Un juego de combinación y construcción donde ayudarás a María a recuperar su inspiración artística en un encantador pueblo costero.
+                    </p>
+
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Enlaces rápidos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#inicio" class="text-gray-600 hover:text-rosa transition-all duration-300">Inicio</a></li>
+                        <li><a href="#sobre" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre el juego</a></li>
+                        <li><a href="#caracteristicas" class="text-gray-600 hover:text-rosa transition-all duration-300">Características</a></li>
+                        <li><a href="#gameplay" class="text-gray-600 hover:text-rosa transition-all duration-300">Gameplay</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Soporte</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/About-us/" class="text-gray-600 hover:text-rosa transition-all duration-300">Sobre los promotores</a></li>
+                        <li><a href="/contacto/" class="text-gray-600 hover:text-rosa transition-all duration-300">Contacto</a></li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Legal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/Policy356/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de privacidad</a></li>
+                        <li><a href="/Service347/" class="text-gray-600 hover:text-rosa transition-all duration-300">Términos de uso</a></li>
+                        <li><a href="/Cookie992/" class="text-gray-600 hover:text-rosa transition-all duration-300">Política de cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2025 Merge Wonder Park. Todos los derechos reservados.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="/Policy356/" class="text-gray-500 hover:text-rosa text-sm">Política de privacidad</a>
+                        <a href="/Service347/" class="text-gray-500 hover:text-rosa text-sm">Términos de uso</a>
+                        <a href="/Cookie992/" class="text-gray-500 hover:text-rosa text-sm">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Scripts -->
+    <script>
+        // Simple mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.querySelector('button.md\\:hidden');
+            const mobileMenu = document.querySelector('.hidden.md\\:hidden');
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // Simple animation for elements when they come into view
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section > div').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Add the CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                .animate-fade-in {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                }
+                
+                /* Magic sparkle effect */
+                @keyframes sparkle {
+                    0% { transform: scale(1); opacity: 0.8; }
+                    50% { transform: scale(1.2); opacity: 1; }
+                    100% { transform: scale(1); opacity: 0.8; }
+                }
+                
+                .magic-sparkle {
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: white;
+                    pointer-events: none;
+                    animation: sparkle 2s infinite;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add magic sparkles to certain elements
+            const addSparkles = (element, count = 5) => {
+                for (let i = 0; i < count; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('magic-sparkle');
+
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+
+                    sparkle.style.left = `${posX}%`;
+                    sparkle.style.top = `${posY}%`;
+
+                    // Random size
+                    const size = 4 + Math.random() * 6;
+                    sparkle.style.width = `${size}px`;
+                    sparkle.style.height = `${size}px`;
+
+                    // Random color (yellow or pink)
+                    const colors = ['#ffc501', '#da2b90', '#ffffff'];
+                    sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                    // Random animation delay
+                    sparkle.style.animationDelay = `${Math.random() * 2}s`;
+
+                    // Add to the element
+                    element.style.position = 'relative';
+                    element.style.overflow = 'hidden';
+                    element.appendChild(sparkle);
+                }
+            };
+
+            // Add sparkles to glowing elements
+            document.querySelectorAll('.magic-glow, .magic-glow-pink').forEach(element => {
+                addSparkles(element, 3);
+            });
+
+            // Simple hover effect for buttons
+            document.querySelectorAll('.btn-hover').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px)';
+                    button.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.1)';
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translateY(0)';
+                    button.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+        });
+    </script>
+
+
+
+
+    <!-- Magic floating elements -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add floating animation to specific elements
+            const floatingElements = document.querySelectorAll('.magic-glow, .magic-glow-pink');
+
+            floatingElements.forEach((element, index) => {
+                // Create different animation for each element
+                const delay = index * 0.2;
+                const duration = 3 + Math.random() * 2;
+
+                element.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+            });
+
+            // Add the floating animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floating {
+                    0% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                    100% { transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+
+    <?php include 'cookie-consent.php'; ?>
+</body>
+
+</html>
